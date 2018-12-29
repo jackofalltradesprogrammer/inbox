@@ -8,3 +8,17 @@ const provider = new HDWalletProvider(
 );
 
 const web3 = new Web3(provider); // instance to connect to Rinkeby network
+
+const deploy = async () => {
+    const accounts = await web3.eth.getAccounts(); // get accounts from our web3 instance
+
+    console.log('Attempting to deploy from account', accounts[0]);
+
+    // the contract ("It tells what or what will exist in the block chain")
+    const result = await new web3.eth.Contract(JSON.parse(interface))             // instance with ABI object (not JSON) from constructor Contract() either interacts or to create new 
+        .deploy({ data: bytecode, arguments: ['Hi there!'] })    // it tells we need to deploy a contract (transaction object) with arguments
+        .send({ gas: '1000000', from: accounts[0] });             // instructs web3 to send out a transaction that creates this contract
+
+    console.log('Contract deployed to', result.options.address);
+};
+deploy();  // this function is only used so we can use Async/Await features
