@@ -25,6 +25,12 @@ describe('Inbox', () => {
     it('deploys a contract', () => {
         assert.ok(inbox.options.address); // test if the address exists, it means it is deployed
     });
+
+    it('has a default message', async () => {
+        const message = await inbox.methods.message().call(); // there are two parentheses one is for the method if any arguments and 
+                                            //second one to customize transaction sending to the network
+        assert.equal(message, 'Hi there!');
+    });
 });
 
 
