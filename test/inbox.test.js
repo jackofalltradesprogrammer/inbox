@@ -1,7 +1,10 @@
 const assert = require('assert'); // use for assertions
 const ganache = require('ganache-cli');
 const Web3 = require('web3'); // Web3 is camel case because it is a constructor
-const web3 = new Web3(ganache.provider())// working with an instance
+
+// Update the two lines to fix a web3 error
+const provider = ganache.provider();
+const web3 = new Web3(provider)// working with an instance
 const {interface, bytecode } = require('../compile'); // receives the only two properties from the exported smart contract object by solidity
 
 let accounts;
