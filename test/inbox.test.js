@@ -3,12 +3,10 @@ const ganache = require('ganache-cli');
 const Web3 = require('web3'); // Web3 is camel case because it is a constructor
 const web3 = new Web3(ganache.provider())// working with an instance
 
-beforeEach(() => {
+let accounts;
+beforeEach(async () => {
     // Get a list of all accounts
-    web3.eth.getAccounts()   // every function is async returns a promise
-        .then(fetchedAccounts => {
-            console.log(fetchedAccounts);
-        });
+    accounts = await web3.eth.getAccounts();
     // Use one of those accounts to deploy
 
     // the contract
@@ -16,7 +14,7 @@ beforeEach(() => {
 
 describe('Inbox', () => {
     it('deploys a contract', () => {
-        
+        console.log(accounts);
     });
 });
 
